@@ -1,10 +1,11 @@
-// import {student} from "../lib/student";
 
 let sinon = require("sinon");
 let main = require("../lib/main");
 let Student = require("../lib/student");
 let Score = require("../lib/score");
+let Arr = require("../lib/array");
 let expectedStu = new Student('Tom',1,'汉',1,new Score(100,100,100,100));
+let newStudentScore = [100,400];
 
 describe('main()', () => {
 
@@ -28,24 +29,26 @@ describe('addStudents()', () => {
 
 });
 
+describe('student of averageScore and totalScore', () => {
+
+    it('According to the results of the subjects to find the average score and total score', () => {
+
+
+        expect(new Arr().studentScore()).toEqual(newStudentScore);
+    });
+
+});
+
 describe('printScoreForm()', () => {
 
     it('should printScoreForm is successful', () => {
-        sinon.spy(console, 'log');
-//         let expectedResult = `成绩单
-// 姓名|数学|语文|英语|编程|平均分|总分
-// ========================
-// 张三|75|95|80|80|82.5|330
-// 李四|85|80|70|90|81.25|325
-// ========================
-// 全班总分平均数：xxx
-// 全班总分中位数：xxx`;
-        let expectedRe = `成绩单
-        姓名|数学|语文|英语|编程|平均分|总分
-        ========================
-        Tom|100|100|100|100|100|400`;
-        new Student().printScoreForm(expectedStu);
-        expect(console.log.args.join()).toHaveBeenCalledWith(expectedRe);
+
+        let expectedRe = "成绩单" + "\n" +
+        "姓名|数学|语文|英语|编程|平均分|总分" + "\n" +
+        "========================" + "\n" +
+        "Tom|100|100|100|100|100|400";
+
+        expect(new Student().printScoreForm(expectedStu)).toEqual(expectedRe);
     });
 
 });
